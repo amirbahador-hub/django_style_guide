@@ -1,3 +1,4 @@
 {
-  "project_name":"embed"
+  "project_name":"embed",
+  "license": ["MIT", "BSD-3", "BEER"],
 }
