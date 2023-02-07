@@ -37,12 +37,17 @@ pip install -r requirements.txt
 docker-compose -f docker-compose.dev.yml up -d
 ```
 
-5- Create tables
+5- create your env
+```
+cp .env.example .env
+```
+
+6- Create tables
 ```
 python manage.py migrate
 ```
 
-6- run the project
+7- run the project
 ```
 python manage.py runserver
 ```
