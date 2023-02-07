@@ -1,4 +1,13 @@
 {
   "project_name":"embed",
-  "license": ["MIT", "BSD-3", "BEER"]
+  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+
+  "license": ["MIT", "BEER"],
+
+  "_copy_without_render": [
+        "markdown_tools/*",
+        "frontend/src/**/*.vue",
+        "frontend/node_modules/*",
+        "backend/app/app/email-templates/**"
+    ]
 }
