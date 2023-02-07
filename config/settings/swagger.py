@@ -1,0 +1,6 @@
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Embed API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
