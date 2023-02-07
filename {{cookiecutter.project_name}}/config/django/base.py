@@ -16,8 +16,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 LOCAL_APPS = [
-    'embed.core.apps.CoreConfig',
-    'embed.common.apps.CommonConfig',
+    '{{cookiecutter.project_slug}}.core.apps.CoreConfig',
+    '{{cookiecutter.project_slug}}.common.apps.CommonConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///embed'),
+    'default': env.db('DATABASE_URL', default='postgres:///{{cookiecutter.project_slug}}'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -87,8 +87,8 @@ if os.environ.get('GITHUB_WORKFLOW'):
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'github_actions',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'USER': '{{cookiecutter.postgres_user}}',
+            'PASSWORD': '{{cookiecutter.postgres_password}}',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.BaseUser'
+#AUTH_USER_MODEL = 'users.BaseUser'
 
 
 # Internationalization
@@ -139,7 +139,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'EXCEPTION_HANDLER': 'embed.api.exception_handlers.drf_default_with_modifications_exception_handler',
+    'EXCEPTION_HANDLER': '{{cookiecutter.project_slug}}.api.exception_handlers.drf_default_with_modifications_exception_handler',
     # 'EXCEPTION_HANDLER': 'embed.api.exception_handlers.hacksoft_proposed_exception_handler',
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',

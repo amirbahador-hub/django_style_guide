@@ -4,6 +4,9 @@
 
   "license": ["MIT", "BEER"],
 
+  "postgres_user": "user",
+  "postgres_password": "password",
+
   "_copy_without_render": [
         "markdown_tools/*",
         "frontend/src/**/*.vue",

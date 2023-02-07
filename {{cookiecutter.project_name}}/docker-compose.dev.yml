@@ -7,9 +7,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=embed_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB={{cookiecutter.project_slug}}
+      - POSTGRES_USER={{cookiecutter.postgres_user}}
+      - POSTGRES_PASSWORD={{cookiecutter.postgres_password}}
     volumes:
       - postgres-data:/var/lib/postgresql/data/
 
