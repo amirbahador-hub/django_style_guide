@@ -24,9 +24,9 @@ SOFTWARE.
 /*
  * ----------------------------------------------------------------------------
  * "THE BEER-WARE LICENSE" (Revision 42):
- * amirbahador wrote this file.  As long as you retain this notice you
+ * {{cookiecutter.first_name|lower}} wrote this file.  As long as you retain this notice you
  * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   AmirBahador-Bahadori
+ * this stuff is worth it, you can buy me a beer in return.   {{cookiecutter.first_name}}-{{cookiecutter.last_name}}
  * ----------------------------------------------------------------------------
  */
 {% endif %}

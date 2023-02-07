@@ -1,6 +1,9 @@
 {
-  "project_name":"embed",
+  "project_name":"MyProject",
   "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+
+  "first_name":"author",
+  "last_name":"author lastname",
 
   "license": ["MIT", "BEER"],
 
