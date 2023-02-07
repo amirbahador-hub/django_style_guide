@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class ApiConfig(AppConfig):
-    name = 'embed.api'
+    name = '{{cookiecutter.project_slug}}.api'

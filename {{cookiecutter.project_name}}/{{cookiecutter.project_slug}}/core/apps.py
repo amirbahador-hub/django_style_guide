@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    name = 'embed.core'
+    name = '{{cookiecutter.project_slug}}.core'
