@@ -13,8 +13,8 @@ JWT_AUTH_HEADER_PREFIX = env("JWT_AUTH_HEADER_PREFIX", default="Bearer")
 
 
 JWT_AUTH = {
-    "JWT_GET_USER_SECRET_KEY": "embed.authentication.services.auth_user_get_jwt_secret_key",
-    "JWT_RESPONSE_PAYLOAD_HANDLER": "embed.authentication.services.auth_jwt_response_payload_handler",
+    "JWT_GET_USER_SECRET_KEY": "{{cookiecutter.project_slug}}.authentication.services.auth_user_get_jwt_secret_key",
+    "JWT_RESPONSE_PAYLOAD_HANDLER": "{{cookiecutter.project_slug}}.authentication.services.auth_jwt_response_payload_handler",
     "JWT_EXPIRATION_DELTA": datetime.timedelta(seconds=JWT_EXPIRATION_DELTA_SECONDS),
     "JWT_ALLOW_REFRESH": False,
 
