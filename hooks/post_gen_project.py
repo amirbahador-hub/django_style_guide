@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-lisence = '{{cookiecutter.lisence}}'
+lisence = "{{cookiecutter.license}}"
 
 def delete_resource(resource):
     if os.path.isfile(resource):
