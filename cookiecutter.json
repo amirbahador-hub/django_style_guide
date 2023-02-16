@@ -5,7 +5,7 @@
   "first_name":"author",
   "last_name":"author lastname",
 
-  "license": ["MIT", "BEER"],
+  "license": ["MIT", "BEER", "None"],
 
   "postgres_user": "user",
   "postgres_password": "password",
