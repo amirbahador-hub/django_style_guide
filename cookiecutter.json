@@ -10,6 +10,8 @@
   "postgres_user": "user",
   "postgres_password": "password",
 
+  "use_jwt": "n",
+
   "_copy_without_render": [
         "markdown_tools/*",
         "frontend/src/**/*.vue",
