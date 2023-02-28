@@ -19,8 +19,8 @@ LOCAL_APPS = [
     '{{cookiecutter.project_slug}}.core.apps.CoreConfig',
     '{{cookiecutter.project_slug}}.common.apps.CommonConfig',
 {%- if cookiecutter.use_jwt == "y" -%}
-    '{{cookiecutter.project_slug}}.users.apps.CommonConfig',
-    '{{cookiecutter.project_slug}}.authentication.apps.CommonConfig',
+    '{{cookiecutter.project_slug}}.users.apps.UsersConfig',
+    '{{cookiecutter.project_slug}}.authentication.apps.AuthenticationConfig',
 {% endif %}
 ]
 
