@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#AUTH_USER_MODEL = 'users.BaseUser'
+
 {%- if cookiecutter.use_jwt == "y" -%}
 AUTH_USER_MODEL = 'users.BaseUser'
 {% endif %}
