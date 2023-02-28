@@ -18,7 +18,7 @@ ALLOWED_HOSTS = ['*']
 LOCAL_APPS = [
     '{{cookiecutter.project_slug}}.core.apps.CoreConfig',
     '{{cookiecutter.project_slug}}.common.apps.CommonConfig',
-{%- if cookiecutter.user_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" -%}
     '{{cookiecutter.project_slug}}.users.apps.CommonConfig',
     '{{cookiecutter.project_slug}}.authentication.apps.CommonConfig',
 {% endif %}
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #AUTH_USER_MODEL = 'users.BaseUser'
-{%- if cookiecutter.user_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" -%}
 AUTH_USER_MODEL = 'users.BaseUser'
 {% endif %}
 

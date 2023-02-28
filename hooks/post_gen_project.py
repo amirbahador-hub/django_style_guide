@@ -3,7 +3,7 @@ import shutil
 
 
 lisence = "{{cookiecutter.license}}"
-jwt = "{{cookiecutter.user_jwt}}"
+jwt = "{{cookiecutter.use_jwt}}"
 project_slug = "{{cookiecutter.project_slug}}"
 
 def delete_resource(resource):
