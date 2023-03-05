@@ -18,11 +18,10 @@ ALLOWED_HOSTS = ['*']
 LOCAL_APPS = [
     '{{cookiecutter.project_slug}}.core.apps.CoreConfig',
     '{{cookiecutter.project_slug}}.common.apps.CommonConfig',
-
-{%- if cookiecutter.use_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" %}
     '{{cookiecutter.project_slug}}.users.apps.UsersConfig',
     '{{cookiecutter.project_slug}}.authentication.apps.AuthenticationConfig',
-{% endif %}
+{%- endif %}
 ]
 
 THIRD_PARTY_APPS = [
@@ -119,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-{%- if cookiecutter.use_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" %}
 AUTH_USER_MODEL = 'users.BaseUser'
-{% endif %}
+{%- endif %}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
