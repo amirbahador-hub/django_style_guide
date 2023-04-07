@@ -4,38 +4,37 @@
 
 1- compelete cookiecutter workflow (recommendation: leave project_slug empty) and go inside the project
 ```
-cd Project_name
+cd {{cookiecutter.project_name}}
 ```
 
 2- SetUp venv
 ```
-virtualenv venv
+virtualenv -p python3.10 venv
 source venv/bin/activate
 ```
 
 3- install Dependencies
 ```
+pip install -r requirements_dev.txt
 pip install -r requirements.txt
 ```
 
-4- spin off docker compose
-```
-docker-compose -f docker-compose.dev.yml up -d
-```
-
-5- create your env
+4- create your env
 ```
 cp .env.example .env
 ```
 
-6- Create tables
+5- Create tables
 ```
 python manage.py migrate
+```
+
+6- spin off docker compose
+```
+docker compose -f docker-compose.dev.yml up -d
 ```
 
 7- run the project
 ```
 python manage.py runserver
 ```
-
-

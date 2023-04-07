@@ -1,6 +1,6 @@
 {
   "project_name":"MyProject",
-  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}",
 
   "first_name":"author",
   "last_name":"author lastname",
@@ -10,7 +10,7 @@
   "postgres_user": "user",
   "postgres_password": "password",
 
-  "use_jwt": "n",
+  "use_jwt": "y",
 
   "_copy_without_render": [
         "markdown_tools/*",

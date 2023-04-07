@@ -1,6 +1,6 @@
 from typing import List, Dict, Any, Tuple
 
-from embed.common.types import DjangoModelType
+from {{cookiecutter.project_slug}}.common.types import DjangoModelType
 
 
 def model_update(
