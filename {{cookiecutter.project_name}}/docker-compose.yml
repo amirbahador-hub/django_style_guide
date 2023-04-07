@@ -3,6 +3,7 @@ version: "3.9"
 services:
   db:
     image: postgres:14.1
+    container_name: postgres
     ports:
       - 5432:5432
     environment:
@@ -12,7 +13,7 @@ services:
 
   rabbitmq:
     image: "rabbitmq:alpine"
-
+    container_name: rabbitmq
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 30s
@@ -22,10 +23,11 @@ services:
   django:
     build:
       context: .
-      dockerfile: docker/local.Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+      dockerfile: docker/production.Dockerfile
+    container_name: django
+    command: ./docker/web_entrypoint.sh
     environment:
-      - DATABASE_URL=psql://postgres:postgres@db:5432/{{cookiecutter.project_slug}}
+      - DATABASE_URL=psql://{{cookiecutter.postgres_user}}:{{cookiecutter.postgres_password}}@db:5432/{{cookiecutter.project_slug}}
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
     volumes:
       - .:/app
@@ -39,10 +41,12 @@ services:
   celery:
     build:
       context: .
-      dockerfile: docker/local.Dockerfile
-    command: celery -A {{cookiecutter.project_slug}}.tasks worker -l info --without-gossip --without-mingle --without-heartbeat
+      dockerfile: docker/production.Dockerfile
+    # command: celery -A {{cookiecutter.project_slug}}.tasks worker -l info --without-gossip --without-mingle --without-heartbeat
+    container_name: worker
+    command: ./docker/celery_entrypoint.sh
     environment:
-      - DATABASE_URL=psql://postgres:postgres@db:5432/{{cookiecutter.project_slug}}
+      - DATABASE_URL=psql://{{cookiecutter.postgres_user}}:{{cookiecutter.postgres_password}}@db:5432/{{cookiecutter.project_slug}}
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
     volumes:
       - .:/app
@@ -54,10 +58,12 @@ services:
   beats:
     build:
       context: .
-      dockerfile: docker/local.Dockerfile
-    command: celery -A {{cookiecutter.project_slug}}.tasks beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+      dockerfile: docker/production.Dockerfile
+    # command: celery -A {{cookiecutter.project_slug}}.tasks beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    container_name: beats
+    command: ./docker/beats_entrypoint.sh
     environment:
-      - DATABASE_URL=psql://postgres:postgres@db:5432/{{cookiecutter.project_slug}}
+      - DATABASE_URL=psql://{{cookiecutter.postgres_user}}:{{cookiecutter.postgres_password}}@db:5432/{{cookiecutter.project_slug}}
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
     volumes:
       - .:/app
