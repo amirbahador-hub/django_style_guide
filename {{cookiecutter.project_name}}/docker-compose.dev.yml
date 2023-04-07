@@ -4,6 +4,7 @@ services:
 
   db:
     image: postgres:14.1
+    container_name: postgres
     ports:
       - 5432:5432
     environment:
@@ -13,9 +14,19 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data/
 
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 'pg_pass'
+    ports:
+      - "5050:80"
+
   rabbitmq:
     image: "rabbitmq:alpine"
-
+    container_name: rabbitmq
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 30s
@@ -24,6 +35,7 @@ services:
 
   redis:
     image: redis:7
+    container_name: redis
     ports:
       - 6379:6379
     volumes:

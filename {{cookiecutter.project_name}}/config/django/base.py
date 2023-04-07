@@ -1,5 +1,4 @@
 import os
-
 from config.env import env, BASE_DIR
 
 env.read_env(os.path.join(BASE_DIR, ".env"))
@@ -10,24 +9,24 @@ SECRET_KEY = '=ug_ucl@yi6^mrcjyz%(u0%&g2adt#bz3@yos%#@*t#t!ypx=a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 
 # Application definition
-
 LOCAL_APPS = [
     '{{cookiecutter.project_slug}}.core.apps.CoreConfig',
     '{{cookiecutter.project_slug}}.common.apps.CommonConfig',
-
-{%- if cookiecutter.use_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" %}
     '{{cookiecutter.project_slug}}.users.apps.UsersConfig',
     '{{cookiecutter.project_slug}}.authentication.apps.AuthenticationConfig',
-{% endif %}
+{%- endif %}
 ]
 
 THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
+    'django_celery_results',
+    'django_celery_beat',
     'corsheaders',
     'drf_spectacular',
     'django_extensions',
@@ -119,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-{%- if cookiecutter.use_jwt == "y" -%}
+{%- if cookiecutter.use_jwt == "y" %}
 AUTH_USER_MODEL = 'users.BaseUser'
-{% endif %}
+{%- endif %}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -147,7 +146,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'EXCEPTION_HANDLER': '{{cookiecutter.project_slug}}.api.exception_handlers.drf_default_with_modifications_exception_handler',
-    # 'EXCEPTION_HANDLER': 'embed.api.exception_handlers.hacksoft_proposed_exception_handler',
+    # 'EXCEPTION_HANDLER': '{{cookiecutter.project_slug}}.api.exception_handlers.hacksoft_proposed_exception_handler',
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
@@ -176,6 +175,4 @@ from config.settings.sessions import *  # noqa
 from config.settings.celery import *  # noqa
 from config.settings.swagger import *  # noqa
 #from config.settings.sentry import *  # noqa
-
-#from config.settings.files_and_storages import *  # noqa
 #from config.settings.email_sending import *  # noqa
