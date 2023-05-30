@@ -12,6 +12,8 @@
 
   "use_jwt": "y",
 
+  "use_celery": "y",
+
   "_copy_without_render": [
         "markdown_tools/*",
         "frontend/src/**/*.vue",
