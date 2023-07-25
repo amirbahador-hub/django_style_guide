@@ -13,6 +13,6 @@ fi
 
 dropdb --if-exists "$DATABASE_NAME"
 
-sudo -u postgres createdb -O "$POSTGRES_USERNAME" "$DATABASE_NAME"
+sudo -U postgres createdb -O "$POSTGRES_USERNAME" "$DATABASE_NAME"
 
 python manage.py migrate
